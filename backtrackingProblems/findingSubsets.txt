@@ -1,0 +1,35 @@
+import java.util.*;
+
+class Main{
+	private static  List<List<Character>> findSubsets(String input){
+	    // 2d list to store the list of subsets each subset is one list
+	    List<List<Character>> result=new ArrayList<>();
+	    
+	    // this is backtracking function
+	    backtrack(0,input,new ArrayList<>(),result);
+	    return result;
+	}
+	private static void backtrack(int i,String input,List<Character> path,  List<List<Character>> result){
+	    result.add(new ArrayList<>(path));
+	    for(int start=i;start<input.length();++start){
+	        
+	        // include character appears
+	        path.add(input.charAt(start));
+	        
+	        backtrack(start+1,input,path,result);
+	        
+	        // remove the character that is included
+	        path.remove(path.size()-1);
+	    }
+	}
+	 	
+    	public static void main(String args[]){
+ 	System.out.print("Enter input: ");
+	Scanner sc=new Scanner(System.in);
+	String input=sc.nextLine();
+ 	for(var subset: findSubsets(input)){
+	 	System.out.print(subset+" ");
+}
+}
+}
+	
